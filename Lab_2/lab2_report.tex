@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+\hypersetup{
+colorlinks, linkcolor=blue,
+}
+
+
+\begin{document}
+
+\title{Analog Electronics}
+\author{Laboratory exercise 2}
+\date{Fall 2016}
+\maketitle
+
+\newpage
+\section{Abstract}
+
+In this experimentation we will receive a mystery amplifier from which we will determine its gain, $R_i$, and its $R_o$; using our oscilloscopes in combination with out function generator. Once those variables are established we will also plot a 15 point graph showing the linearity of the amplifier and its reaction to various amplitudes. Further more we will form up with another group to create a cascading amplifier that gives us a gain of 60 on our load 2.2k resistor.
+
+\section{Theory}
+
+By being able to calculate and measure our mystery static amplifier we will be able to create a cascading system that suits our needs. In some cases we may be unable to produce a amplifier with a gain of 60, but by using various amplifiers we can reproduce a gain of 60. The same way that there is no such thing as a $105k \Omega$, we can create one through the use of a $100k \Omega$ and a $5k \Omega$ in series.
+
+
+\newpage
+
+\section{Experimentation}
+\subsection{Experiment setup}
+
+
+
+
+We begin the experiment by receiving our mystery circuit, Amplifier $D$. The first thing will do is calculate the gain of $D$. \\
+
+To power our amplifier we will utilize the terminals atop of breadboard.
+\begin{enumerate}
+	\item Starting from the left, The first terminal will be connected to $+12v$, the second to $-12v$, and the third terminal to ground.
+\end{enumerate}
+
+Next we will setup our function generator to power our circuit.
+
+\begin{enumerate}
+	\item Power on the function generator
+	\item Set the frequency of our sin wave to $1kHz$
+	\item Set the amplitude of our sine wave to around $300mV$
+	\item Plug our termination into the function generator output 1, followed by our wire that will be attached to our circuit.
+	\item Take the ground from the function generator and plug it into the BLUE vertical connection to the far left of the board.
+	\item Take the positive from the function generator and plug it into the RED vertical connection to the far left of the board.
+\end{enumerate}
+
+Now we will setup our oscilloscope to compare our $V_i$ to our $V_o$.
+
+\begin{enumerate}
+	\item Power on the oscilloscope
+	\item Ensuring that probes are attached to input 1 on the oscilloscope, attach the ground clip to the BLUE vertical ground on the far RIGHT of the board
+	\item Attach the positive probe to the far right of the board on the RED vertical connection.
+\end{enumerate}
+
+Finally we will power our amplifier on.
+
+\begin{enumerate}
+	\item Power on channel one on both the oscilloscope and the function generator.
+	\item Press "Autoset" on your function generator. 
+	\item The output sinusoid will appear.
+\end{enumerate}
+\textit{Note: If your output sinusoid is clipping, adjust your input amplitude to a lower value.}
+
+\newpage
+
+
+\subsection{Measurements}
+To calculate our gain we will compare our $V_i$ from our function generator to our $V_o$ on our oscilloscope.
+
+\begin{enumerate}
+	\item Find an input amplitude value that ensures our output sinusoid is not clipping. This value will be our $V_i$
+	\item Using the occiliscope measure the pk-pk voltage of the output sinusoid, this will be our $V_o$
+\end{enumerate}
+From these two values we can calculate the gain,$A_v,$ through our amplifiers with the equation
+
+$$A_v = \frac{V_o}{V_i}$$
+
+When we plug our values in we get
+
+$$A_v = \frac{V_o}{V_i} = \frac{100mV}{3.13V} = 31$$
+
+The gain for amplifier $D$ is $\approx 30$\\
+
+From the various methods of measurements we used, such as placing and finding the current across a resistor we concluded that our input $R_o$ is near zero.\\
+
+From by adjusting out function generator amplitude from $0-700mV$ by intervals of $50$ we will create a table, then graph its linearity.
+
+\begin{table}[h]
+	\centering
+	\caption{$V_i$ vs $V_i$}
+	\label{my-label}
+	\begin{tabular}{lll}
+		$V_i$ mV & $V_o$ & Gain        \\
+		700          & 22    & 31.81818182 \\
+		650          & 20.5  & 31.70731707 \\
+		600          & 19    & 31.57894737 \\
+		550          & 17.3  & 31.79190751 \\
+		500          & 15.8  & 31.64556962 \\
+		450          & 13.9  & 32.37410072 \\
+		400          & 12.4  & 32.25806452 \\
+		350          & 10.8  & 32.40740741 \\
+		300          & 9.38  & 31.98294243 \\
+		250          & 7.75  & 32.25806452 \\
+		200          & 6.23  & 32.10272873 \\
+		150          & 4.74  & 31.64556962 \\
+		100          & 3.12  & 32.05128205 \\
+		50           & 1.62  & 30.86419753
+	\end{tabular}
+\end{table}
+\newpage
+\subsubsection{Graphing $V_i$ and $V_o$}	
+From the table we created we can graph the relationship between our inputs and outputs to better illustrate our op-amp
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{graph1.png}
+	\label{fig:lab2_graph}
+\end{figure}
+
+\subsubsection{Calculating Cut-off frequency}
+
+To calculate our cutoff frequency we will use our function generator to send a sinusoid with an amplitude that is too great for our amplifier to power. This will result in a near square wave. The value that we arrived at was $1200KHz$
+
+\subsection{Cascading Amplifiers}
+For the next part of out experimentation we will combine teams with another mystery amplifier to arrive at a gain of 60 across a $2.2K\Omega$ resistor. When calculating gain we simply multiply the gain of one amplifier to another. In our case an amplifier of 2 in combination with our 30 will arrive at a gain of 60. By combining our amplifier in series with group A we were able to arrive at a gain of 60 across a $100K\Omega$ resistor. \\
+
+We had an initial problem where we could not get the full voltage to our $2.2K\Omega$ resistor. To solve this problem we created a much larger load to ensure that all the voltage arrived at it rather than the $940\Omega R_0$. We where later corrected and shown that a gain of 60 can be achieved with the original load resistor
+
+
+\newpage
+
+
+\section{Conclusion}
+
+In this experimentation we used a variety of analysis techniques to calculate several variables for our mystery amplifier. From this point we measured numerous data points from various input amplitudes and created a linear graph of the data. By combining with another mystery amplifier we where able to successfully create a gain of 60.
+
+
+\end{document}
